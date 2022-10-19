@@ -2,10 +2,6 @@ import React from "react"
 
 export function SetList(props) {
 
-    React.useEffect(() => {
-        props.SetToDoItem(JSON.parse(localStorage.getItem('TO DO LIST'))) 
-    }, [])
-
     function setToActive(list, item) {
         list[item].status = false
         props.SetToDoItem(list)
@@ -24,6 +20,10 @@ export function SetList(props) {
     let activeItems = [];
 
     let inactiveItems = [];
+
+    React.useEffect(() => {
+        props.SetToDoItem(JSON.parse(localStorage.getItem('LIST'))) 
+      }, [])
 
     const currentList = [...props.ToDoItem]
 
@@ -64,8 +64,6 @@ export function SetList(props) {
             }
         } return inactiveItems
     }
-
-    localStorage.setItem('TO DO LIST', JSON.stringify(props.ToDoItem))
     
     return(
         <>
