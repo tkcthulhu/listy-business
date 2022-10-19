@@ -5,29 +5,30 @@ export function SetList(props) {
     function setToActive(list, item) {
         list[item].status = false
         props.SetToDoItem(list)
+        props.SetLocalStorage(list)
     }
 
     function setToInactive(list, item) {
         list[item].status = true
         props.SetToDoItem(list)
+        props.SetLocalStorage(list)
     }
 
     function deleteItem(id) {
         let remaining = props.ToDoItem.filter(item => item.id !== id)
         props.SetToDoItem(remaining)
+        props.SetLocalStorage(remaining)
     }
 
     let activeItems = [];
 
     let inactiveItems = [];
 
-    React.useEffect(() => {
-        props.SetToDoItem(JSON.parse(localStorage.getItem('LIST'))) 
-      }, [])
+    // React.useEffect(() => {
+    //     props.SetToDoItem(JSON.parse(localStorage.getItem('LIST'))) 
+    // }, [])
 
     const currentList = [...props.ToDoItem]
-
-    console.log(currentList)
 
     function filterActive() {    
         for (let i = 0; i < currentList.length; i++) {
@@ -72,6 +73,7 @@ export function SetList(props) {
                 {filterActive()}
                 <h4>MF DONE: {inactiveItems.length}</h4>
                 {filterInactive()}
+
             </div>
         </>
     )

@@ -13,7 +13,7 @@ function UserInput(props) {
         const list = listSelect.current.value;
         const status = true;
         const id = Date.now()
-
+ 
         props.SetToDoItem([...props.ToDoItem, {input, priority, list, status, id}])
 
         localStorage.setItem('LIST', JSON.stringify([...props.ToDoItem, {input, priority, list, status, id}]))
