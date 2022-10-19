@@ -12,12 +12,13 @@ function UserInput(props) {
         const priority = prioritySelect.current.value;
         const list = listSelect.current.value;
         const status = true;
+        const id = Date.now()
 
-        props.SetToDoItem([...props.ToDoItem, {input, priority, list, status}])
+        props.SetToDoItem([...props.ToDoItem, {input, priority, list, status, id}])
 
         userInput.current.value = null;
 
-        console.log(props.ToDoItem)
+        console.log(props.ToDoItem + 'userInput')
     }
 
     return (

@@ -12,13 +12,13 @@ function App() {
   
   return (
     <>
-    <div className="row justify-content-center">
-      <div className="col-10">
-        <h1>Listy Business</h1>
+      <div className="row justify-content-center">
+        <div className="col-10">
+          <h1>Listy Business</h1>
+        </div>
+        <UserInput ToDoItem={ToDoItem} SetToDoItem={SetToDoItem}/>
       </div>
-      <UserInput ToDoItem={ToDoItem} SetToDoItem={SetToDoItem}/>
-    </div>
-    <SetList ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} page={page} setPage={setPage} />
+      <SetList ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} page={page} setPage={setPage} />
     </>
   );
 }
