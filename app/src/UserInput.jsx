@@ -4,14 +4,18 @@ function UserInput(props) {
 
     const userInput = React.useRef(null);
     const priority = React.useRef(null);
+    const list = React.useRef(null);
 
-    function AddItem() {
+    function addItem() {
 
-        const INPUT = userInput.current.value;
-        let STATUS = true;
-        const PRIORITY = priority.current.value;
+        const input = userInput.current.value;
+        const priority = priority.current.value;
+        const list = list.current.value;
+        const status = true;
 
-        props.SetToDoItem([...props.ToDoItem, {INPUT, STATUS, PRIORITY}])
+        props.SetToDoItem([...props.ToDoItem, {input, priority, list, status}])
+
+        userInput.current.value = null;
 
         console.log(props.ToDoItem)
     }
@@ -24,7 +28,10 @@ function UserInput(props) {
             <option value="Med">Medium</option>
             <option value="Low">Low</option>
         </select>
-        <i className="bi bi-plus-square-fill" onClick={() => {AddItem()}}></i>
+        <select name="list" ref={list}>
+            <option value="default">To Do</option>
+        </select>
+        <i className="bi bi-plus-square-fill" onClick={() => {addItem()}}></i>
       </div>
     )
 }
