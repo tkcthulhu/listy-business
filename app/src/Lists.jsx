@@ -2,22 +2,26 @@ import React from "react"
 
 export function SetList(props) {
 
+    function SetLocalStorage(list) {
+        localStorage.setItem('LIST', JSON.stringify(list))
+    }
+
     function setToActive(list, item) {
         list[item].status = false
         props.SetToDoItem(list)
-        props.SetLocalStorage(list)
+        SetLocalStorage(list)
     }
 
     function setToInactive(list, item) {
         list[item].status = true
         props.SetToDoItem(list)
-        props.SetLocalStorage(list)
+        SetLocalStorage(list)
     }
 
     function deleteItem(id) {
         let remaining = props.ToDoItem.filter(item => item.id !== id)
         props.SetToDoItem(remaining)
-        props.SetLocalStorage(remaining)
+        SetLocalStorage(remaining)
     }
 
     let activeItems = [];
@@ -29,6 +33,9 @@ export function SetList(props) {
     function filterActive() {    
         for (let i = 0; i < currentList.length; i++) {
             if (currentList[i].status === true) {
+
+                let listName = currentList[i].input
+
                 activeItems.push(
                     <div className="row-10 justify-constent-center" id={currentList[i].list + i} key={currentList[i].list + i}>
                         <div className="col-6 d-flex">

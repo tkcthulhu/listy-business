@@ -4,7 +4,7 @@ export function CheckAll(props) {
 
     function SetLocalStorage(list) {
         localStorage.setItem('LIST', JSON.stringify(list))
-      }
+    }
 
     function allActive(list) {
         for (let i = 0; i < list.length; i++) {

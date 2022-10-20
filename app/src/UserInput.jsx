@@ -32,8 +32,8 @@ function UserInput(props) {
         for (let i = 0; i < userLists.length; i++) {
             newLists.push(
                 <>
-                    <option value= {userLists[i]}>
-                        {userLists[i]}
+                    <option value= {userLists[i].input}>
+                        {userLists[i].input}
                     </option>
                 </>
             )
