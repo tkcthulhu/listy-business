@@ -20,7 +20,7 @@ function App() {
   }
 
   if (!newList) {
-    setNewList([])
+    setNewList([{input:'To Do', listItems:[], id:'OG'}])
   }
   
   return (

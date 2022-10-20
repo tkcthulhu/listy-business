@@ -6,16 +6,21 @@ export function SetList(props) {
         localStorage.setItem('LIST', JSON.stringify(list))
     }
 
-    function setToActive(list, item) {
-        let target = props.ToDoItem.filter(item => item.id === id)
+    function setToActive(id, list) {
+        // let list = [...props.ToDoItem]
+        let target = list.filter(item => item.id === id)
         target.status = false
+        props.SetToDoItem(list)
+        console.log(props.ToDoItem)
         setLocalStorage(list)
     }
 
-    function setToInactive(id) {
-        let target = props.ToDoItem.filter(item => item.id === id)
+    function setToInactive(id, list) {
+        // let list = [...props.ToDoItem]
+        let target = list.filter(item => item.id === id)
         target.status = true
         props.SetToDoItem(list)
+        console.log(props.ToDoItem)
         setLocalStorage(list)
     }
 
@@ -92,9 +97,7 @@ export function SetList(props) {
         
     }
 
-    function buildUserLists() {
-
-        let lists = [...props.newList]
+    function buildUserLists(lists) {
 
         let userLists = []
 
@@ -106,8 +109,6 @@ export function SetList(props) {
 
             let items = lists[i].listItems
 
-            console.log(items)
-
             listName = lists[i].input
 
             for (let i = 0; i < items.length; i++) {
@@ -118,7 +119,7 @@ export function SetList(props) {
                             {items[i].input}
                         </div>
                         <div className='col-2'>
-                            <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(items[i].id)}></i>
+                            <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(items[i].id, currentList)}></i>
                             <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(items[i].id)}></i>
                         </div>
                     </div>
@@ -143,14 +144,18 @@ export function SetList(props) {
         )
     }    
 
+    let allLists = []
+
     function filterItems() {
 
-        let lists = [...props.newList]
+        let allLists = [...props.newList]
 
-        for (let i = 0; i < lists.length; i++) {
-            lists[i].listItems = activeItems.filter(x => x.list === lists[i].input)
-            props.setNewList(lists)    
+        for (let i = 0; i < allLists.length; i++) {
+            allLists[i].listItems = activeItems.filter(x => x.list === allLists[i].input)
+            // props.setNewList(allLists)    
         }
+
+        return allLists
 
     }
 
@@ -159,9 +164,9 @@ export function SetList(props) {
     return(
         <>
             <div className="container-fluid">
-                <button onClick={() => {filterItems()}}>Filter</button>
+                {/* {filterItems()} */}
                 {/* {buildList(activeItems)} */}
-                {buildUserLists()}
+                {buildUserLists(filterItems())}
                 <h4>MF DONE: {inactiveItems.length}</h4>
                 {filterInactive()}
             </div>
