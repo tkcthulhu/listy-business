@@ -34,19 +34,7 @@ export function SetList(props) {
         for (let i = 0; i < currentList.length; i++) {
             if (currentList[i].status === true) {
 
-                let listName = currentList[i].input
-
-                activeItems.push(
-                    <div className="row-10 justify-constent-center" id={currentList[i].list + i} key={currentList[i].list + i}>
-                        <div className="col-6 d-flex">
-                            {currentList[i].input}
-                        </div>
-                        <div className='col-2'>
-                            <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(currentList, i)}></i>
-                            <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(currentList[i].id)}></i>
-                        </div>
-                    </div>
-                )
+                activeItems.push(currentList[i])
             }    
         } return activeItems
     }
@@ -68,12 +56,45 @@ export function SetList(props) {
             }
         } return inactiveItems
     }
+
+    function buildList(items) {
+
+        let listName = ''
+
+        let thisList = []
+
+        for (let i = 0; i < items.length; i++) {
+
+            thisList.push(
+                <div className="row-10 justify-constent-center" id={items[i].list + i} key={items[i].list + i}>
+                    <div className="col-6 d-flex">
+                        {items[i].input}
+                    </div>
+                    <div className='col-2'>
+                        <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(items, i)}></i>
+                        <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(items[i].id)}></i>
+                    </div>
+                </div>
+            )
+
+            listName = items[0].list
+        }
+                
+        return(
+            <>
+                <h4>
+                    {listName} : {thisList.length}
+                </h4>
+                {thisList}
+            </>
+        )
+        
+    }
     
     return(
         <>
             <div className="container-fluid">
-                <h4>TO DO: {activeItems.length}</h4>
-                {filterActive()}
+                {buildList(filterActive())}
                 <h4>MF DONE: {inactiveItems.length}</h4>
                 {filterInactive()}
             </div>

@@ -52,7 +52,7 @@ function UserInput(props) {
             <option value="Low">Low</option>
         </select>
         <select name="list" ref={listSelect}>
-            <option value="default">To Do</option>
+            <option value="To Do">To Do</option>
             {userListsBuild()}
         </select>
         <i className="bi bi-plus-square-fill" onClick={() => {addItem()}}></i>
