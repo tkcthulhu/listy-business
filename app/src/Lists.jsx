@@ -36,7 +36,16 @@ export function SetList(props) {
         setLocalStorage(remaining)
     }
 
-    function deleteList(id) {
+    function deleteList(id, userList) {
+
+        let userListItems = userList.listItems
+
+        for (let i = 0; i < userListItems.length; i++) {
+            console.log(userListItems[i].id)
+            deleteItem(userListItems[i].id)
+        }
+
+        console.log(userList.listItems)
         let remaining = props.newList.filter(item => item.id !== id)
         props.setNewList(remaining)
         localStorage.setItem('UserLists', JSON.stringify(remaining))
@@ -107,7 +116,7 @@ export function SetList(props) {
             function deleteButton() {
                 if (!(lists[i].id === 'OG')) {
                     return(
-                    <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteList(lists[i].id)}></i>
+                    <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteList(lists[i].id, lists[i])}></i>
                     )
                 }
             }
