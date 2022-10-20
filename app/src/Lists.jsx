@@ -7,13 +7,14 @@ export function SetList(props) {
     }
 
     function setToActive(list, item) {
-        list[item].status = false
-        props.SetToDoItem(list)
+        let target = props.ToDoItem.filter(item => item.id === id)
+        target.status = false
         setLocalStorage(list)
     }
 
-    function setToInactive(list, item) {
-        list[item].status = true
+    function setToInactive(id) {
+        let target = props.ToDoItem.filter(item => item.id === id)
+        target.status = true
         props.SetToDoItem(list)
         setLocalStorage(list)
     }
@@ -65,7 +66,7 @@ export function SetList(props) {
         for (let i = 0; i < activeItems.length; i++) {
 
             thisList.push(
-                <div className="row-10 justify-constent-center" id={activeItems[i].list + i} key={activeItems[i].list + i}>
+                <div className="row-10 justify-constent-center" id={activeItems[i].id} key={activeItems[i].id}>
                     <div className="col-6 d-flex">
                         {activeItems[i].input}
                     </div>
@@ -95,31 +96,33 @@ export function SetList(props) {
 
         let lists = [...props.newList]
 
-        let listName = ''
-
-        let thisList = []
-
         let userLists = []
 
         for (let i = 0; i < lists.length; i++) {
 
+            let listName = ''
+
+            let thisList = []
+
             let items = lists[i].listItems
+
+            console.log(items)
+
+            listName = lists[i].input
 
             for (let i = 0; i < items.length; i++) {
 
                 thisList.push(
-                    <div className="row-10 justify-constent-center" id={items[i].list + i} key={items[i].list + i}>
+                    <div className="row-10 justify-constent-center" id={items[i].id} key={items[i].id}>
                         <div className="col-6 d-flex">
                             {items[i].input}
                         </div>
                         <div className='col-2'>
-                            <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(items, i)}></i>
+                            <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(items[i].id)}></i>
                             <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(items[i].id)}></i>
                         </div>
                     </div>
                 )
-
-                listName = items[0].list
 
             }
 

@@ -9,6 +9,9 @@ export function CheckAll(props) {
     function allActive(list) {
         for (let i = 0; i < list.length; i++) {
             list[i].status = false
+            console.log(list[i].id)
+            let target = document.getElementById(`${list[i].id}`)
+            target.classList.add('done')
         }
         props.SetToDoItem(list)
         SetLocalStorage(list)
@@ -17,6 +20,9 @@ export function CheckAll(props) {
     function allInactive(list) {
         for (let i = 0; i < list.length; i++) {
             list[i].status = true
+            console.log(list[i].id)
+            let target = document.getElementById(`${list[i].id}`)
+            target.classList.remove('done')
         }
         props.SetToDoItem(list)
         SetLocalStorage(list)

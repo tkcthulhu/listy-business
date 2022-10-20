@@ -10,9 +10,11 @@ export function MultiList(props) {
 
         const listItems = []
 
-        props.setNewList([...props.newList, {input, listItems}])
+        const id = Date.now()
 
-        localStorage.setItem('UserLists', JSON.stringify([...props.newList, {input, listItems}]))
+        props.setNewList([...props.newList, {input, listItems, id}])
+
+        localStorage.setItem('UserLists', JSON.stringify([...props.newList, {input, listItems, id}]))
 
         userList.current.value = null;
     }
