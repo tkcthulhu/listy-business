@@ -24,10 +24,6 @@ export function SetList(props) {
 
     let inactiveItems = [];
 
-    // React.useEffect(() => {
-    //     props.SetToDoItem(JSON.parse(localStorage.getItem('LIST'))) 
-    // }, [])
-
     const currentList = [...props.ToDoItem]
 
     function filterActive() {    
@@ -73,7 +69,6 @@ export function SetList(props) {
                 {filterActive()}
                 <h4>MF DONE: {inactiveItems.length}</h4>
                 {filterInactive()}
-
             </div>
         </>
     )

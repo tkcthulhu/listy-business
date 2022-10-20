@@ -23,8 +23,28 @@ function UserInput(props) {
         console.log(props.ToDoItem + 'userInput')
     }
 
+    function userListsBuild() {
+
+        let userLists = [...props.newList]
+
+        let newLists = []
+
+        for (let i = 0; i < userLists.length; i++) {
+            newLists.push(
+                <>
+                    <option value= {userLists[i]}>
+                        {userLists[i]}
+                    </option>
+                </>
+            )
+        }
+
+        return newLists
+        
+    }
+
     return (
-        <div className="col-10">
+    <div className="col-10">
         <input ref={userInput}/>
         <select name="priority" ref={prioritySelect}>
             <option value="High">High</option>
@@ -33,9 +53,10 @@ function UserInput(props) {
         </select>
         <select name="list" ref={listSelect}>
             <option value="default">To Do</option>
+            {userListsBuild()}
         </select>
         <i className="bi bi-plus-square-fill" onClick={() => {addItem()}}></i>
-      </div>
+    </div>
     )
 }
 
