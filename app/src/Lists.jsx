@@ -22,7 +22,7 @@ export function SetList(props) {
 
         for (let i = 0; i < list.length; i++) {
             if (list[i].id === id) {
-                console.log('This one officer')
+                console.log('Take it back')
                 list[i].status = true;
             }
         }
@@ -65,7 +65,7 @@ export function SetList(props) {
                             {currentList[i].input}
                         </div>
                         <div className='col-2'>
-                            <i className="bi bi-arrow-up-circle-fill align-self-end" onClick={() => setToInactive(currentList, i)}></i>
+                            <i className="bi bi-arrow-up-circle-fill align-self-end" onClick={() => setToInactive(currentList[i].id, currentList)}></i>
                             <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(currentList[i].id)}></i>
                         </div>
                     </div>
