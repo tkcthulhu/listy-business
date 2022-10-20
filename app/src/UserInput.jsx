@@ -20,7 +20,6 @@ function UserInput(props) {
 
         userInput.current.value = null;
 
-        console.log(props.ToDoItem + 'userInput')
     }
 
     function userListsBuild() {

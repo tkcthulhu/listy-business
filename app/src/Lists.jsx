@@ -31,6 +31,7 @@ export function SetList(props) {
     }
 
     function deleteItem(id) {
+        console.log('here')
         let remaining = props.ToDoItem.filter(item => item.id !== id)
         props.SetToDoItem(remaining)
         setLocalStorage(remaining)
@@ -38,14 +39,12 @@ export function SetList(props) {
 
     function deleteList(id, userList) {
 
-        let userListItems = userList.listItems
+        let userListItems = [...userList.listItems]
 
         for (let i = 0; i < userListItems.length; i++) {
-            console.log(userListItems[i].id)
-            deleteItem(userListItems[i].id)
+            userListItems[i].status = ''
         }
 
-        console.log(userList.listItems)
         let remaining = props.newList.filter(item => item.id !== id)
         props.setNewList(remaining)
         localStorage.setItem('UserLists', JSON.stringify(remaining))
@@ -150,6 +149,14 @@ export function SetList(props) {
 
     }
 
+    function removeGarbage() {
+        for (let i = 0; i < currentList.length; i++) {
+            if (!currentList[i].list) {
+                deleteItem(currentList[i].id)
+            }
+        }
+    }    
+
     filterActive();
 
     return(
@@ -158,6 +165,7 @@ export function SetList(props) {
                 {buildUserLists(filterItems())}
                 <h4>MF DONE: {inactiveItems.length}</h4>
                 {filterInactive()}
+                {removeGarbage()}
             </div>
         </>
     )
