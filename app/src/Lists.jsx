@@ -30,6 +30,12 @@ export function SetList(props) {
         setLocalStorage(remaining)
     }
 
+    function deleteList(id) {
+        let remaining = props.newList.filter(item => item.id !== id)
+        props.setNewList(remaining)
+        setLocalStorage(remaining)
+    }
+
     let activeItems = [];
 
     let inactiveItems = [];
@@ -62,41 +68,6 @@ export function SetList(props) {
         } return inactiveItems
     }
 
-    function buildList() {
-
-        let listName = ''
-
-        let thisList = []
-
-        for (let i = 0; i < activeItems.length; i++) {
-
-            thisList.push(
-                <div className="row-10 justify-constent-center" id={activeItems[i].id} key={activeItems[i].id}>
-                    <div className="col-6 d-flex">
-                        {activeItems[i].input}
-                    </div>
-                    <div className='col-2'>
-                        <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(activeItems, i)}></i>
-                        <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(activeItems[i].id)}></i>
-                    </div>
-                </div>
-            )
-
-            listName = activeItems[0].list
-
-        }
-                
-        return(
-            <>
-                <h4>
-                    {listName} : {thisList.length}
-                </h4>
-                {thisList}
-            </>
-        )
-        
-    }
-
     function buildUserLists(lists) {
 
         let userLists = []
@@ -127,10 +98,18 @@ export function SetList(props) {
 
             }
 
+            function deleteButton() {
+                if (!(lists[i].id === 'OG')) {
+                    return(
+                    <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteList(lists[i].id)}></i>
+                    )
+                }
+            }
+
             userLists.push(
                 <>
                     <h4>
-                        {listName} : {thisList.length}
+                        {listName} : {thisList.length} {deleteButton()}
                     </h4>
                     {thisList}
                 </>
