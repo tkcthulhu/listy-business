@@ -50,7 +50,7 @@ export function SetList(props) {
         let userListItems = [...userList.listItems]
 
         for (let i = 0; i < userListItems.length; i++) {
-            userListItems[i].status = ''
+            userListItems[i].list = ''
         }
 
         let remaining = props.newList.filter(item => item.id !== id)
