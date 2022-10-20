@@ -7,20 +7,26 @@ export function SetList(props) {
     }
 
     function setToActive(id, list) {
-        // let list = [...props.ToDoItem]
-        let target = list.filter(item => item.id === id)
-        target.status = false
+
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].id === id) {
+                console.log('This one officer')
+                list[i].status = false;
+            }
+        }
         props.SetToDoItem(list)
-        console.log(props.ToDoItem)
         setLocalStorage(list)
     }
 
     function setToInactive(id, list) {
-        // let list = [...props.ToDoItem]
-        let target = list.filter(item => item.id === id)
-        target.status = true
+
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].id === id) {
+                console.log('This one officer')
+                list[i].status = true;
+            }
+        }
         props.SetToDoItem(list)
-        console.log(props.ToDoItem)
         setLocalStorage(list)
     }
 
@@ -33,7 +39,7 @@ export function SetList(props) {
     function deleteList(id) {
         let remaining = props.newList.filter(item => item.id !== id)
         props.setNewList(remaining)
-        setLocalStorage(remaining)
+        localStorage.setItem('UserLists', JSON.stringify(remaining))
     }
 
     let activeItems = [];
@@ -123,15 +129,12 @@ export function SetList(props) {
         )
     }    
 
-    let allLists = []
-
     function filterItems() {
 
         let allLists = [...props.newList]
 
         for (let i = 0; i < allLists.length; i++) {
-            allLists[i].listItems = activeItems.filter(x => x.list === allLists[i].input)
-            // props.setNewList(allLists)    
+            allLists[i].listItems = activeItems.filter(x => x.list === allLists[i].input)   
         }
 
         return allLists
@@ -143,8 +146,6 @@ export function SetList(props) {
     return(
         <>
             <div className="container-fluid">
-                {/* {filterItems()} */}
-                {/* {buildList(activeItems)} */}
                 {buildUserLists(filterItems())}
                 <h4>MF DONE: {inactiveItems.length}</h4>
                 {filterInactive()}
