@@ -156,8 +156,8 @@ export function SetList(props) {
             }
 
             userLists.push(
-                <div class="accordion-item" id={id}>
-                    <h2 class="accordion-header" id="headingOne">
+                <div className="accordion-item" id={id}>
+                    <h2 className="accordion-header" id="headingOne">
                         <button 
                             className="accordion-button row-10 d-flex" 
                             type="button" 

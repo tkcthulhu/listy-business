@@ -31,17 +31,17 @@ export function CheckAll(props) {
         <div className="container">
             <div className="row justify-content-center buttonRow">
                 <div className="col d-flex justify-content-center">
-                    <button  onClick={() => {allActive(list)}}>
+                    <button className="btn btn-success" onClick={() => {allActive(list)}}>
                         <h3><strong>All Done</strong></h3>
                     </button>
                 </div>
                 <div className="col d-flex justify-content-center">
-                    <button onClick={() => {allInactive(list)}}>
+                    <button className="btn btn-warning" onClick={() => {allInactive(list)}}>
                         <h3><strong>All ...like not done?</strong></h3>
                     </button>
                 </div>
                 <div className="col d-flex justify-content-center">
-                    <button onClick={() => {allGone()}}>
+                    <button className="btn btn-danger" onClick={() => {allGone()}}>
                         <h3><strong>Over it</strong></h3>
                     </button>
                 </div>

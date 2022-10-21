@@ -65,7 +65,7 @@ function UserInput(props) {
             <div className="col">
                 <h1>
                     <i 
-                        className="bi bi-plus-square-fill" 
+                        className="bi bi-plus-square-fill icon" 
                         onClick={() => {addItem()}}
                         id={id}
                     />
