@@ -20,6 +20,14 @@ code {
   text-align: end;
 }
 
-.icon {
-  
+.deleteButton {
+  color: red;
+}
+
+.checkButton {
+  color: rgb(126, 211, 0);
+}
+
+.redoButton {
+  color: rgb(255, 115, 0);
 }

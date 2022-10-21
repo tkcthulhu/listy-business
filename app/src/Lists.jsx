@@ -68,19 +68,23 @@ export function SetList(props) {
             if (status) {
 
                 return(
-                    <i 
-                        className="bi bi-check-circle-fill icon" 
-                        onClick={() => setToInactive(id, currentList)}
-                    />
+                    <h2>
+                        <i 
+                            className="bi bi-check-circle-fill icon checkButton" 
+                            onClick={() => setToInactive(id, currentList)}
+                        />
+                    </h2>
                 )
 
             } else {
 
                 return(
-                    <i 
-                        className="bi bi-arrow-up-circle-fill icon" 
-                        onClick={() => setToActive(id, currentList)}
-                    />
+                    <h2>
+                        <i 
+                            className="bi bi-arrow-up-circle-fill icon redoButton" 
+                            onClick={() => setToActive(id, currentList)}
+                        />
+                    </h2>
                 )
 
             } 
@@ -116,14 +120,22 @@ export function SetList(props) {
                         key={items[i].id}
                     >
                         <div className="col-11">
-                            {items[i].input}
+                            <h2>{items[i].input}</h2>
                         </div>
-                        <div className="col-1">    
-                            {statusButtons(items[i].id, items[i].status)}
-                            <i 
-                                className="bi bi-x-circle-fill icon" 
-                                onClick={() => deleteItem(items[i].id)}
-                            />
+                        <div className="col-1">   
+                            <div className="row">
+                                <div className="col"> 
+                                    {statusButtons(items[i].id, items[i].status)}
+                                </div>
+                                <div className="col">
+                                    <h2>    
+                                        <i 
+                                            className="bi bi-x-circle-fill icon deleteButton" 
+                                            onClick={() => deleteItem(items[i].id)}
+                                        />
+                                    </h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )
@@ -134,7 +146,7 @@ export function SetList(props) {
                 if (!(lists[i].id === 'OG')) {
                     return(
                     <i 
-                        className="bi bi-x-circle-fill icon listButton" 
+                        className="bi bi-x-circle-fill icon deleteButton" 
                         onClick={() => deleteList(lists[i].id, lists[i])}
                     />
                     )
@@ -145,7 +157,7 @@ export function SetList(props) {
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button 
-                            class="accordion-button row d-flex" 
+                            class="accordion-button row-10 d-flex" 
                             type="button" 
                             data-bs-toggle="collapse" 
                             data-bs-target={"#collapse" + i} 
@@ -153,10 +165,10 @@ export function SetList(props) {
                             aria-controls={"collapse" + i}
                         >    
                             <div className="col-11 listTitle">
-                                <strong>{listName} : {incomplete.length}</strong>
+                                <h1><strong>{listName} : {incomplete.length}</strong></h1>
                             </div>
                             <div className="col-1">
-                                {deleteButton()}
+                                <h1>{deleteButton()}</h1>
                             </div>    
                         </button>
                     </h2>
