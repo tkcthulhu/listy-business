@@ -5,12 +5,13 @@ function UserInput(props) {
     const userInput = React.useRef(null);
     const listSelect = React.useRef(null);
 
+    let id = Date.now()
+
     function addItem() {
 
         const input = userInput.current.value;;
         const list = listSelect.current.value;
         const status = true;
-        const id = Date.now()
  
         props.SetToDoItem([...props.ToDoItem, {input, list, status, id}])
 
@@ -29,8 +30,11 @@ function UserInput(props) {
         for (let i = 0; i < userLists.length; i++) {
             newLists.push(
                 <>
-                    <option value= {userLists[i].input}>
-                        <h2>{userLists[i].input}</h2>
+                    <option 
+                        value= {userLists[i].input}
+                        id={id}
+                    >
+                        {userLists[i].input}
                     </option>
                 </>
             )
@@ -47,6 +51,7 @@ function UserInput(props) {
                 <input 
                     ref={userInput}
                     className='inputItem'
+                    id={id}
                 />
                 <select 
                     name="list" 
@@ -62,6 +67,7 @@ function UserInput(props) {
                     <i 
                         className="bi bi-plus-square-fill" 
                         onClick={() => {addItem()}}
+                        id={id}
                     />
                 </h1>
             </div>

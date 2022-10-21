@@ -2,6 +2,10 @@ import React from "react"
 
 export function SetList(props) {
 
+    const currentList = [...props.ToDoItem]
+
+    let id = Date.now()
+
     function setLocalStorage(list) {
         localStorage.setItem('LIST', JSON.stringify(list))
     }
@@ -46,8 +50,6 @@ export function SetList(props) {
         props.setNewList(remaining)
         localStorage.setItem('UserLists', JSON.stringify(remaining))
     }
-
-    const currentList = [...props.ToDoItem]
 
     function strikeThrough(status) {
         if (status) {
@@ -154,10 +156,10 @@ export function SetList(props) {
             }
 
             userLists.push(
-                <div class="accordion-item">
+                <div class="accordion-item" id={id}>
                     <h2 class="accordion-header" id="headingOne">
                         <button 
-                            class="accordion-button row-10 d-flex" 
+                            className="accordion-button row-10 d-flex" 
                             type="button" 
                             data-bs-toggle="collapse" 
                             data-bs-target={"#collapse" + i} 
@@ -174,11 +176,11 @@ export function SetList(props) {
                     </h2>
                     <div   
                         id={"collapse" + i} 
-                        class="accordion-collapse collapse" 
+                        className="accordion-collapse collapse" 
                         aria-labelledby="headingOne" 
                         data-bs-parent="#accordionExample"
                     >
-                        <div class="accordion-body">
+                        <div className="accordion-body">
                             {thisList}
                         </div>
                     </div>
@@ -188,7 +190,7 @@ export function SetList(props) {
 
         return(
             <div 
-                class="accordion accordion-flush" 
+                className="accordion accordion-flush" 
                 id="accordionExample"
             >
             {userLists}
