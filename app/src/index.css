@@ -15,3 +15,39 @@ code {
 .done {
   text-decoration: line-through;
 }
+
+#listButton {
+  text-align: end;
+}
+
+.deleteButton {
+  color: red;
+}
+
+.checkButton {
+  color: rgb(126, 211, 0);
+}
+
+.redoButton {
+  color: rgb(255, 115, 0);
+}
+
+.buttonRow {
+  padding-top: 2vh;
+}
+
+.listRow {
+  padding-top: 2vh;
+}
+
+.inputRow {
+  padding-top: 2vh;
+}
+
+.inputItem {
+  height: 3.5vh;
+}
+
+#listSelect {
+  width: max-content;
+}
