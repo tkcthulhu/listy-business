@@ -10,8 +10,7 @@ export function SetList(props) {
 
         for (let i = 0; i < list.length; i++) {
             if (list[i].id === id) {
-                console.log('This one officer')
-                list[i].status = false;
+                list[i].status = true;
             }
         }
         props.SetToDoItem(list)
@@ -19,11 +18,9 @@ export function SetList(props) {
     }
 
     function setToInactive(id, list) {
-
         for (let i = 0; i < list.length; i++) {
             if (list[i].id === id) {
-                console.log('Take it back')
-                list[i].status = true;
+                list[i].status = false;
             }
         }
         props.SetToDoItem(list)
@@ -42,7 +39,7 @@ export function SetList(props) {
         let userListItems = [...userList.listItems]
 
         for (let i = 0; i < userListItems.length; i++) {
-            userListItems[i].status = ''
+            userListItems[i].list = ''
         }
 
         let remaining = props.newList.filter(item => item.id !== id)
@@ -50,36 +47,34 @@ export function SetList(props) {
         localStorage.setItem('UserLists', JSON.stringify(remaining))
     }
 
-    let activeItems = [];
-
-    let inactiveItems = [];
-
     const currentList = [...props.ToDoItem]
 
-    function filterActive() {    
-        for (let i = 0; i < currentList.length; i++) {
-            if (currentList[i].status === true) {
-                activeItems.push(currentList[i])
-            }    
-        } return activeItems
+    function strikeThrough(status) {
+        if (status) {
+            return(
+                "row-10 justify-constent-center"
+            )
+        } else {
+            return(
+                "row-10 justify-constent-center done"
+            )
+        }
     }
 
-    function filterInactive() {
-        for (let i = 0; i < currentList.length; i++) {
-            if (currentList[i].status === false) {
-                inactiveItems.push(
-                    <div className="row-10 justify-constent-center" id={currentList[i].id} key={currentList[i].id}>
-                        <div className="col-6 d-flex done">
-                            {currentList[i].input}
-                        </div>
-                        <div className='col-2'>
-                            <i className="bi bi-arrow-up-circle-fill align-self-end" onClick={() => setToInactive(currentList[i].id, currentList)}></i>
-                            <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(currentList[i].id)}></i>
-                        </div>
-                    </div>
-                )    
-            }
-        } return inactiveItems
+    function statusButtons(id, status) {
+
+            if (status) {
+
+                return(
+                    <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToInactive(id, currentList)}></i>
+                )
+            } else {
+
+                return(
+                    <i className="bi bi-arrow-up-circle-fill align-self-end" onClick={() => setToActive(id, currentList)}></i>
+                )
+            } 
+
     }
 
     function buildUserLists(lists) {
@@ -92,19 +87,26 @@ export function SetList(props) {
 
             let thisList = []
 
+            let incomplete = []
+
             let items = lists[i].listItems
 
             listName = lists[i].input
 
             for (let i = 0; i < items.length; i++) {
 
+                if (items[i].status) {
+                    incomplete.push('$')
+                    console.log('bloop')
+                }
+
                 thisList.push(
-                    <div className="row-10 justify-constent-center" id={items[i].id} key={items[i].id}>
+                    <div className={strikeThrough(items[i].status)} id={items[i].id} key={items[i].id}>
                         <div className="col-6 d-flex">
                             {items[i].input}
                         </div>
                         <div className='col-2'>
-                            <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToActive(items[i].id, currentList)}></i>
+                            {statusButtons(items[i].id, items[i].status)}
                             <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(items[i].id)}></i>
                         </div>
                     </div>
@@ -123,7 +125,7 @@ export function SetList(props) {
             userLists.push(
                 <>
                     <h4>
-                        {listName} : {thisList.length} {deleteButton()}
+                        {listName} : {incomplete.length} {deleteButton()}
                     </h4>
                     {thisList}
                 </>
@@ -142,7 +144,7 @@ export function SetList(props) {
         let allLists = [...props.newList]
 
         for (let i = 0; i < allLists.length; i++) {
-            allLists[i].listItems = activeItems.filter(x => x.list === allLists[i].input)   
+            allLists[i].listItems = currentList.filter(x => x.list === allLists[i].input)   
         }
 
         return allLists
@@ -157,14 +159,10 @@ export function SetList(props) {
         }
     }    
 
-    filterActive();
-
     return(
         <>
             <div className="container-fluid">
                 {buildUserLists(filterItems())}
-                <h4>MF DONE: {inactiveItems.length}</h4>
-                {filterInactive()}
                 {removeGarbage()}
             </div>
         </>
