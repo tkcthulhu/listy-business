@@ -51,10 +51,12 @@ export function SetList(props) {
 
     function strikeThrough(status) {
         if (status) {
+
             return(
                 "row-10 justify-constent-center"
             )
         } else {
+
             return(
                 "row-10 justify-constent-center done"
             )
@@ -66,13 +68,21 @@ export function SetList(props) {
             if (status) {
 
                 return(
-                    <i className="bi bi-check-circle-fill align-self-end icon" onClick={() => setToInactive(id, currentList)}></i>
+                    <i 
+                        className="bi bi-check-circle-fill icon" 
+                        onClick={() => setToInactive(id, currentList)}
+                    />
                 )
+
             } else {
 
                 return(
-                    <i className="bi bi-arrow-up-circle-fill align-self-end icon" onClick={() => setToActive(id, currentList)}></i>
+                    <i 
+                        className="bi bi-arrow-up-circle-fill icon" 
+                        onClick={() => setToActive(id, currentList)}
+                    />
                 )
+
             } 
 
     }
@@ -97,17 +107,23 @@ export function SetList(props) {
 
                 if (items[i].status) {
                     incomplete.push('$')
-                    console.log('bloop')
                 }
 
                 thisList.push(
-                    <div className={strikeThrough(items[i].status)} id={items[i].id} key={items[i].id}>
-                        <div className="col-6 d-flex">
+                    <div 
+                        className={'row ' + strikeThrough(items[i].status)} 
+                        id={items[i].id} 
+                        key={items[i].id}
+                    >
+                        <div className="col-11">
                             {items[i].input}
                         </div>
-                        <div className='col-2'>
+                        <div className="col-1">    
                             {statusButtons(items[i].id, items[i].status)}
-                            <i className="bi bi-x-circle-fill align-self-end icon" onClick={() => deleteItem(items[i].id)}></i>
+                            <i 
+                                className="bi bi-x-circle-fill icon" 
+                                onClick={() => deleteItem(items[i].id)}
+                            />
                         </div>
                     </div>
                 )
@@ -117,7 +133,10 @@ export function SetList(props) {
             function deleteButton() {
                 if (!(lists[i].id === 'OG')) {
                     return(
-                    <i className="bi bi-x-circle-fill align-self-end icon" onClick={() => deleteList(lists[i].id, lists[i])}></i>
+                    <i 
+                        className="bi bi-x-circle-fill icon listButton" 
+                        onClick={() => deleteList(lists[i].id, lists[i])}
+                    />
                     )
                 }
             }
@@ -125,25 +144,43 @@ export function SetList(props) {
             userLists.push(
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + i} aria-expanded="true" aria-controls={"collapse" + i}>
-                        {listName} : {incomplete.length} {deleteButton()}
-                      </button>
+                        <button 
+                            class="accordion-button row d-flex" 
+                            type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target={"#collapse" + i} 
+                            aria-expanded="true" 
+                            aria-controls={"collapse" + i}
+                        >    
+                            <div className="col-11 listTitle">
+                                <strong>{listName} : {incomplete.length}</strong>
+                            </div>
+                            <div className="col-1">
+                                {deleteButton()}
+                            </div>    
+                        </button>
                     </h2>
-                    <div id={"collapse" + i} class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div   
+                        id={"collapse" + i} 
+                        class="accordion-collapse collapse" 
+                        aria-labelledby="headingOne" 
+                        data-bs-parent="#accordionExample"
+                    >
                         <div class="accordion-body">
-                        {thisList}
-                      </div>
+                            {thisList}
+                        </div>
                     </div>
                 </div>
                 )
         }
 
         return(
-            <>
-            <div class="accordion" id="accordionExample">
+            <div 
+                class="accordion" 
+                id="accordionExample"
+            >
             {userLists}
             </div>
-            </>
         )
     }    
 
@@ -170,8 +207,10 @@ export function SetList(props) {
     return(
         <>
             <div className="container-fluid">
-                {buildUserLists(filterItems())}
-                {removeGarbage()}
+                <div className="row justify-content-center">
+                    {buildUserLists(filterItems())}
+                    {removeGarbage()}
+                </div>
             </div>
         </>
     )

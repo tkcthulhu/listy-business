@@ -29,11 +29,29 @@ function App() {
         <div className="col-10">
           <h1>Listy Business</h1>
         </div>
-        <UserInput ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} newList={newList} setNewList={setNewList}/>
-        <MultiList ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} newList={newList} setNewList={setNewList}/>
+        <UserInput 
+          ToDoItem={ToDoItem} 
+          SetToDoItem={SetToDoItem} 
+          newList={newList} 
+          setNewList={setNewList}
+        />
+        <MultiList 
+          ToDoItem={ToDoItem} 
+          SetToDoItem={SetToDoItem} 
+          newList={newList} 
+          setNewList={setNewList}
+        />
       </div>
-      <SetList ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} newList={newList} setNewList={setNewList}/>
-      <CheckAll ToDoItem={ToDoItem} SetToDoItem={SetToDoItem}/>
+      <SetList 
+        ToDoItem={ToDoItem} 
+        SetToDoItem={SetToDoItem} 
+        newList={newList} 
+        setNewList={setNewList}
+      />
+      <CheckAll 
+        ToDoItem={ToDoItem} 
+        SetToDoItem={SetToDoItem}
+      />
     </>
   );
 }

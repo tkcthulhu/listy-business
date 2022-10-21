@@ -29,18 +29,18 @@ export function CheckAll(props) {
 
     return (
         <>
-            <div className="row justify-content-end">
-                <div className="col">
+            <div className="row justify-content-center">
+                <div className="col d-flex justify-content-center">
                     <button  onClick={() => {allActive(list)}}>
                         All Done
                     </button>
                 </div>
-                <div className="col">
+                <div className="col d-flex justify-content-center">
                     <button onClick={() => {allInactive(list)}}>
                         All ...like not done?
                     </button>
                 </div>
-                <div className="col">
+                <div className="col d-flex justify-content-center">
                     <button onClick={() => {allGone()}}>
                         Over it
                     </button>
