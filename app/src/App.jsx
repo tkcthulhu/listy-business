@@ -25,15 +25,37 @@ function App() {
   
   return (
     <>
-      <div className="row justify-content-center">
-        <div className="col-10">
-          <h1>Listy Business</h1>
+      <div className="container">
+        <div className="row-10 justify-content-center">
+            <div className="col">
+              <h1><strong>Listy Business</strong></h1>
+            </div>
         </div>
-        <UserInput ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} newList={newList} setNewList={setNewList}/>
-        <MultiList ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} newList={newList} setNewList={setNewList}/>
+        <div className="row justify-content-center">
+          <UserInput 
+            ToDoItem={ToDoItem} 
+            SetToDoItem={SetToDoItem} 
+            newList={newList} 
+            setNewList={setNewList}
+            />
+          <MultiList 
+            ToDoItem={ToDoItem} 
+            SetToDoItem={SetToDoItem} 
+            newList={newList} 
+            setNewList={setNewList}
+            />
+        </div>
       </div>
-      <SetList ToDoItem={ToDoItem} SetToDoItem={SetToDoItem} newList={newList} setNewList={setNewList}/>
-      <CheckAll ToDoItem={ToDoItem} SetToDoItem={SetToDoItem}/>
+      <SetList 
+        ToDoItem={ToDoItem} 
+        SetToDoItem={SetToDoItem} 
+        newList={newList} 
+        setNewList={setNewList}
+      />
+      <CheckAll 
+        ToDoItem={ToDoItem} 
+        SetToDoItem={SetToDoItem}
+      />
     </>
   );
 }

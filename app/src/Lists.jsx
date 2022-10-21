@@ -2,6 +2,10 @@ import React from "react"
 
 export function SetList(props) {
 
+    const currentList = [...props.ToDoItem]
+
+    let id = Date.now()
+
     function setLocalStorage(list) {
         localStorage.setItem('LIST', JSON.stringify(list))
     }
@@ -47,14 +51,14 @@ export function SetList(props) {
         localStorage.setItem('UserLists', JSON.stringify(remaining))
     }
 
-    const currentList = [...props.ToDoItem]
-
     function strikeThrough(status) {
         if (status) {
+
             return(
                 "row-10 justify-constent-center"
             )
         } else {
+
             return(
                 "row-10 justify-constent-center done"
             )
@@ -66,13 +70,25 @@ export function SetList(props) {
             if (status) {
 
                 return(
-                    <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToInactive(id, currentList)}></i>
+                    <h3>
+                        <i 
+                            className="bi bi-check-circle-fill icon checkButton" 
+                            onClick={() => setToInactive(id, currentList)}
+                        />
+                    </h3>
                 )
+
             } else {
 
                 return(
-                    <i className="bi bi-arrow-up-circle-fill align-self-end" onClick={() => setToActive(id, currentList)}></i>
+                    <h3>
+                        <i 
+                            className="bi bi-arrow-up-circle-fill icon redoButton" 
+                            onClick={() => setToActive(id, currentList)}
+                        />
+                    </h3>
                 )
+
             } 
 
     }
@@ -97,17 +113,31 @@ export function SetList(props) {
 
                 if (items[i].status) {
                     incomplete.push('$')
-                    console.log('bloop')
                 }
 
                 thisList.push(
-                    <div className={strikeThrough(items[i].status)} id={items[i].id} key={items[i].id}>
-                        <div className="col-6 d-flex">
-                            {items[i].input}
+                    <div 
+                        className={'row ' + strikeThrough(items[i].status)} 
+                        id={items[i].id} 
+                        key={items[i].id}
+                    >
+                        <div className="col-11">
+                            <h3>{items[i].input}</h3>
                         </div>
-                        <div className='col-2'>
-                            {statusButtons(items[i].id, items[i].status)}
-                            <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(items[i].id)}></i>
+                        <div className="col-1">   
+                            <div className="row">
+                                <div className="col"> 
+                                    {statusButtons(items[i].id, items[i].status)}
+                                </div>
+                                <div className="col">
+                                    <h3>    
+                                        <i 
+                                            className="bi bi-x-circle-fill icon deleteButton" 
+                                            onClick={() => deleteItem(items[i].id)}
+                                        />
+                                    </h3>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )
@@ -117,33 +147,54 @@ export function SetList(props) {
             function deleteButton() {
                 if (!(lists[i].id === 'OG')) {
                     return(
-                    <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteList(lists[i].id, lists[i])}></i>
+                    <i 
+                        className="bi bi-x-circle-fill icon deleteButton" 
+                        onClick={() => deleteList(lists[i].id, lists[i])}
+                    />
                     )
                 }
             }
 
             userLists.push(
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + i} aria-expanded="true" aria-controls={"collapse" + i}>
-                        {listName} : {incomplete.length} {deleteButton()}
-                      </button>
+                <div className="accordion-item" id={id}>
+                    <h2 className="accordion-header" id="headingOne">
+                        <button 
+                            className="accordion-button row-10 d-flex" 
+                            type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target={"#collapse" + i} 
+                            aria-expanded="true" 
+                            aria-controls={"collapse" + i}
+                        >    
+                            <div className="col-11 listTitle">
+                                <h2><strong>{listName} : {incomplete.length}</strong></h2>
+                            </div>
+                            <div className="col-1">
+                                <h2>{deleteButton()}</h2>
+                            </div>    
+                        </button>
                     </h2>
-                    <div id={"collapse" + i} class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                        {thisList}
-                      </div>
+                    <div   
+                        id={"collapse" + i} 
+                        className="accordion-collapse collapse" 
+                        aria-labelledby="headingOne" 
+                        data-bs-parent="#accordionExample"
+                    >
+                        <div className="accordion-body">
+                            {thisList}
+                        </div>
                     </div>
                 </div>
                 )
         }
 
         return(
-            <>
-            <div class="accordion" id="accordionExample">
+            <div 
+                className="accordion accordion-flush" 
+                id="accordionExample"
+            >
             {userLists}
             </div>
-            </>
         )
     }    
 
@@ -169,9 +220,11 @@ export function SetList(props) {
 
     return(
         <>
-            <div className="container-fluid">
-                {buildUserLists(filterItems())}
-                {removeGarbage()}
+            <div className="container">
+                <div className="row justify-content-center listRow">
+                    {buildUserLists(filterItems())}
+                    {removeGarbage()}
+                </div>
             </div>
         </>
     )
