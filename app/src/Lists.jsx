@@ -66,12 +66,12 @@ export function SetList(props) {
             if (status) {
 
                 return(
-                    <i className="bi bi-check-circle-fill align-self-end" onClick={() => setToInactive(id, currentList)}></i>
+                    <i className="bi bi-check-circle-fill align-self-end icon" onClick={() => setToInactive(id, currentList)}></i>
                 )
             } else {
 
                 return(
-                    <i className="bi bi-arrow-up-circle-fill align-self-end" onClick={() => setToActive(id, currentList)}></i>
+                    <i className="bi bi-arrow-up-circle-fill align-self-end icon" onClick={() => setToActive(id, currentList)}></i>
                 )
             } 
 
@@ -107,7 +107,7 @@ export function SetList(props) {
                         </div>
                         <div className='col-2'>
                             {statusButtons(items[i].id, items[i].status)}
-                            <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteItem(items[i].id)}></i>
+                            <i className="bi bi-x-circle-fill align-self-end icon" onClick={() => deleteItem(items[i].id)}></i>
                         </div>
                     </div>
                 )
@@ -117,7 +117,7 @@ export function SetList(props) {
             function deleteButton() {
                 if (!(lists[i].id === 'OG')) {
                     return(
-                    <i className="bi bi-x-circle-fill align-self-end" onClick={() => deleteList(lists[i].id, lists[i])}></i>
+                    <i className="bi bi-x-circle-fill align-self-end icon" onClick={() => deleteList(lists[i].id, lists[i])}></i>
                     )
                 }
             }
