@@ -123,18 +123,26 @@ export function SetList(props) {
             }
 
             userLists.push(
-                <>
-                    <h4>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + i} aria-expanded="true" aria-controls={"collapse" + i}>
                         {listName} : {incomplete.length} {deleteButton()}
-                    </h4>
-                    {thisList}
-                </>
+                      </button>
+                    </h2>
+                    <div id={"collapse" + i} class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                        {thisList}
+                      </div>
+                    </div>
+                </div>
                 )
         }
 
         return(
             <>
+            <div class="accordion" id="accordionExample">
             {userLists}
+            </div>
             </>
         )
     }    
