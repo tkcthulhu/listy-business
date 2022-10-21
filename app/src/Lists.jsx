@@ -68,23 +68,23 @@ export function SetList(props) {
             if (status) {
 
                 return(
-                    <h2>
+                    <h3>
                         <i 
                             className="bi bi-check-circle-fill icon checkButton" 
                             onClick={() => setToInactive(id, currentList)}
                         />
-                    </h2>
+                    </h3>
                 )
 
             } else {
 
                 return(
-                    <h2>
+                    <h3>
                         <i 
                             className="bi bi-arrow-up-circle-fill icon redoButton" 
                             onClick={() => setToActive(id, currentList)}
                         />
-                    </h2>
+                    </h3>
                 )
 
             } 
@@ -120,7 +120,7 @@ export function SetList(props) {
                         key={items[i].id}
                     >
                         <div className="col-11">
-                            <h2>{items[i].input}</h2>
+                            <h3>{items[i].input}</h3>
                         </div>
                         <div className="col-1">   
                             <div className="row">
@@ -128,12 +128,12 @@ export function SetList(props) {
                                     {statusButtons(items[i].id, items[i].status)}
                                 </div>
                                 <div className="col">
-                                    <h2>    
+                                    <h3>    
                                         <i 
                                             className="bi bi-x-circle-fill icon deleteButton" 
                                             onClick={() => deleteItem(items[i].id)}
                                         />
-                                    </h2>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -165,10 +165,10 @@ export function SetList(props) {
                             aria-controls={"collapse" + i}
                         >    
                             <div className="col-11 listTitle">
-                                <h1><strong>{listName} : {incomplete.length}</strong></h1>
+                                <h2><strong>{listName} : {incomplete.length}</strong></h2>
                             </div>
                             <div className="col-1">
-                                <h1>{deleteButton()}</h1>
+                                <h2>{deleteButton()}</h2>
                             </div>    
                         </button>
                     </h2>
@@ -188,7 +188,7 @@ export function SetList(props) {
 
         return(
             <div 
-                class="accordion" 
+                class="accordion accordion-flush" 
                 id="accordionExample"
             >
             {userLists}
@@ -218,8 +218,8 @@ export function SetList(props) {
 
     return(
         <>
-            <div className="container-fluid">
-                <div className="row justify-content-center">
+            <div className="container">
+                <div className="row justify-content-center listRow">
                     {buildUserLists(filterItems())}
                     {removeGarbage()}
                 </div>

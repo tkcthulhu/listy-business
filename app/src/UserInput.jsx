@@ -30,7 +30,7 @@ function UserInput(props) {
             newLists.push(
                 <>
                     <option value= {userLists[i].input}>
-                        {userLists[i].input}
+                        <h2>{userLists[i].input}</h2>
                     </option>
                 </>
             )
@@ -41,18 +41,31 @@ function UserInput(props) {
     }
 
     return (
-    <div className="col-10">
-        <input ref={userInput}/>
-        <select 
-            name="list" 
-            ref={listSelect}
-        >
-            {userListsBuild()}
-        </select>
-        <i 
-            className="bi bi-plus-square-fill" 
-            onClick={() => {addItem()}}
-        />
+    <div className="col">
+        <div className="row inputRow">
+            <div className="col">
+                <input 
+                    ref={userInput}
+                    className='inputItem'
+                />
+                <select 
+                    name="list" 
+                    id="listSelect"
+                    className='inputItem'
+                    ref={listSelect}
+                >
+                    {userListsBuild()}
+                </select>
+            </div>
+            <div className="col">
+                <h1>
+                    <i 
+                        className="bi bi-plus-square-fill" 
+                        onClick={() => {addItem()}}
+                    />
+                </h1>
+            </div>
+        </div>
     </div>
     )
 }

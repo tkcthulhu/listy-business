@@ -20,13 +20,26 @@ export function MultiList(props) {
     }
 
     return(
-    <div className="col-10">
-        Add New List
-        <input ref={userList}/>
-        <i 
-            className="bi bi-plus-square-fill icon" 
-            onClick={() => {addList()}}
-        />
+    <div className="col">
+        <div className="row inputRow">
+            <div className="col">
+                <h2>Add New List</h2>
+            </div>
+            <div className="col">
+                <input 
+                    ref={userList}
+                    className='inputItem'
+                />
+            </div>
+            <div className="col">
+                <h1>
+                    <i 
+                        className="bi bi-plus-square-fill icon" 
+                        onClick={() => {addList()}}
+                    />
+                </h1>
+            </div>
+        </div>
     </div>
     )
 }
