@@ -21,14 +21,15 @@ export function MultiList(props) {
 
     return(
     <div className="col">
-        <div className="row inputRow">
-            <div className="col">
+            <div className="row">
                 <h2>Add New List</h2>
             </div>
+        <div className="row inputRow">
             <div className="col">
                 <input 
                     ref={userList}
                     className='inputItem'
+                    onKeyPress={(event) => {if (event.key === 'Enter') {addList()}}}
                 />
             </div>
             <div className="col">

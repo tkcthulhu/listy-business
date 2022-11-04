@@ -52,6 +52,7 @@ function UserInput(props) {
                     ref={userInput}
                     className='inputItem'
                     id={id}
+                    onKeyPress={(event) => {if (event.key === 'Enter') {addItem()}}}
                 />
                 <select 
                     name="list" 
@@ -61,15 +62,6 @@ function UserInput(props) {
                 >
                     {userListsBuild()}
                 </select>
-            </div>
-            <div className="col">
-                <h1>
-                    <i 
-                        className="bi bi-plus-square-fill icon" 
-                        onClick={() => {addItem()}}
-                        id={id}
-                    />
-                </h1>
             </div>
         </div>
     </div>
