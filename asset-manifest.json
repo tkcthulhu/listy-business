@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/listy-business/static/css/main.0e05403a.css",
-    "main.js": "/listy-business/static/js/main.3b19049e.js",
+    "main.js": "/listy-business/static/js/main.d7b545a1.js",
     "static/media/bootstrap-icons.woff?": "/listy-business/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
     "static/media/bootstrap-icons.woff2?": "/listy-business/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
     "index.html": "/listy-business/index.html",
     "main.0e05403a.css.map": "/listy-business/static/css/main.0e05403a.css.map",
-    "main.3b19049e.js.map": "/listy-business/static/js/main.3b19049e.js.map"
+    "main.d7b545a1.js.map": "/listy-business/static/js/main.d7b545a1.js.map"
   },
   "entrypoints": [
     "static/css/main.0e05403a.css",
-    "static/js/main.3b19049e.js"
+    "static/js/main.d7b545a1.js"
   ]
 }
