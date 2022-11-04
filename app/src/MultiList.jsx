@@ -21,7 +21,7 @@ export function MultiList(props) {
 
     return(
     <div className="col">
-            <div className="row">
+            <div className="row title-row">
                 <h2>Add New List</h2>
             </div>
         <div className="row inputRow">

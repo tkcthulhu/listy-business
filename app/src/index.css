@@ -49,5 +49,9 @@ code {
 }
 
 #listSelect {
-  width: max-content;
+  width: 45vw;
+}
+
+.title-row {
+  padding-top: 2vh;
 }
