@@ -46,6 +46,7 @@ code {
 
 .inputItem {
   height: 3.5vh;
+  width: 45vw;
 }
 
 #listSelect {
